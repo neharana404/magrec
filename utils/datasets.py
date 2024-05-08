@@ -3,7 +3,7 @@ import torch
 import pandas as pd
 import numpy as np
 
-from tensorflow.python.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from torch_geometric.loader import DataLoader
 
 from deepctr_torch.inputs import SparseFeat, VarLenSparseFeat, get_feature_names
@@ -133,7 +133,7 @@ def read_create_tabular_split(dataset, domains, kcore, common_file_name, ctr_rat
         os.mkdir(tabular_path)
 
     for dix, d in enumerate(domains):
-        filename = f'{d}_5.csv'
+        filename = f'{d}.csv'
 
         print(f'Reading dataset {d}...')
         ddata = pd.read_csv(os.path.join(DATA_PATH, dataset, 'preprocessed', filename))

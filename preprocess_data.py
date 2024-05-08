@@ -10,17 +10,17 @@ from utils.in_out import load_config
 
 def decompress_amazon_data(domains=None):
     column_map = {
-        'reviewerID': 'user_id',
-        'asin': 'item_id',
-        'overall': 'rating',
-        'unixReviewTime': 'timestamp'
+        'user_id': 'user_id',
+        'parent_asin': 'item_id',
+        'rating': 'rating',
+        'timestamp': 'timestamp'
     }
 
     for domain in domains:
         # New data filenames does not start with "reviews_" but ends with "_5"
-        file_ext = '.json.gz'
+        file_ext = '.jsonl.gz'
         prefix = ''  # 'reviews_'
-        suffix = '_5'
+        suffix = ''
         old_filename = f'{prefix}{domain.replace(" ", "_")}{suffix}'
         filename = f'{prefix}{"".join([d[0] for d in domain.split()])}{suffix}'
 
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
         # Decompress those domains that are still missing
         decompress_path = os.path.join(dataset_path, 'preprocessed')
-        decompress_domains = [d for d, nd in domains.items() if not os.path.isfile(os.path.join(decompress_path, f'{nd}_5.csv'))]
+        decompress_domains = [d for d, nd in domains.items() if not os.path.isfile(os.path.join(decompress_path, f'{nd}.csv'))]
         if decompress_domains:
             print(f'Decompressing {",".join(decompress_domains)} domains...')
             decompress_amazon_data(decompress_domains)

@@ -5,7 +5,7 @@ from torch import nn
 from torch.nn import functional as F
 from torch_geometric.nn import MemPooling, ASAPooling, GCN
 from torch_geometric.nn.conv.gcn_conv import gcn_norm
-from torch_geometric.nn.pool.topk_pool import topk
+from torch_geometric.nn.pool import TopKPooling
 from torch_geometric.utils import softmax, to_dense_batch
 from torch_scatter import scatter, scatter_add
 from torch_sparse import SparseTensor
@@ -131,7 +131,7 @@ class Cluster(nn.Module):
         cluster_score = softmax(torch.stack(cluster_score).mean(0), batch_ixs).view(-1)
 
         # Graph pooling
-        perm = topk(cluster_score, self.ratio, batch_ixs)
+        perm = TopKPooling(cluster_score, self.ratio, batch_ixs)
         x = x[perm] * cluster_score[perm].view(-1, 1)
         batch_ixs = batch_ixs[perm]
 

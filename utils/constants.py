@@ -1,6 +1,6 @@
 import os
 
-BASE_PATH = os.getcwd()
+BASE_PATH = '/Users/neharana/Documents/GitHub/cross-npxx/'
 DATA_PATH = os.path.join(BASE_PATH, 'data')
 CONFIG_PATH = os.path.join(BASE_PATH, 'config')
 HYPEROPT_INTERMEDIATE_PATH = 'model/hyperopt'
@@ -42,19 +42,14 @@ DOMAIN_COL = 'domain_id'
 # 6 Domains = "Musical Instruments,Office Products,Patio Lawn and Garden,Prime Pantry,Toys and Games,Video Games"
 # AMAZON_CATEGORIES = "Clothing Shoes and Jewelry".split(',')  #,Video Games,Toys and Games
 AMAZON_CATEGORIES = [
+    "All Beauty",
+    "Amazon Fashion",
     "Arts Crafts and Sewing",
-    "Digital Music",
-    "Gift Cards",
-    "Industrial and Scientific",
-    "Luxury Beauty",
     "Magazine Subscriptions",
-    "Musical Instruments",
     "Office Products",
-    "Patio Lawn and Garden",
-    "Prime Pantry",
-    "Software",
-    "Toys and Games",
-    "Video Games"
+    "Digital Music",
+    "Toys and Games"
+
 ]
 
 MODES = {'train': 0, 'valid': 1, 'test': 2}
